@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Enter Reading</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+  <h1>Enter Reading</h1>
+  <form th:action="@{/enter-reading}" method="post">
+    <div class="form-group">
+      <label for="clientId">Client</label>
+      <select class="form-control" id="clientId" name="clientId" required>
+        <option th:each="client : ${clients}" th:value="${client.id}" th:text="${client.name}"></option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="smartDeviceId">Smart Device</label>
+      <select class="form-control" id="smartDeviceId" name="smartDeviceId" required>
+        <option th:each="device : ${devices}" th:value="${device.id}" th:text="${device.deviceName}"></option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="readingValue">Reading Value</label>
+      <input type="text" class="form-control" id="readingValue" name="readingValue" required>
+    </div>
+    <div class="form-group">
+      <label for="readingMonth">Reading Month</label>
+      <select id="readingMonth" name="readingMonth">
+        <option th:each="month : ${#numbers.sequence(1, 12)}" th:value="${month}" th:text="${month}"></option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="readingYear">Reading Year</label>
+      <select id="readingYear" name="readingYear">
+        <option th:each="year : ${#numbers.sequence(1900, 3000)}" th:value="${year}" th:text="${year}"></option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  <a th:href="@{/display-readings}" class="btn btn-secondary mt-3">View All Readings</a>
+</div>
+</body>
+</html>

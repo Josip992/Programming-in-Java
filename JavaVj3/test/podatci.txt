@@ -1,0 +1,8 @@
+Potrosnja u zadnjih 1 min: 34094.87089761123 m3 
+Potrosnja u zadnjih 10 min: 25575.715849292385 m3
+Potrosnja u zadnjih 1 sat: 6623.222125838812 m3
+Potrosnja u zadnjih 1 dan: 15002.637468524841 m3
+
+Potrosnja u zadnjih 1 tjedan: 177.21641538205498 m3 
+Potrosnja u zadnjih 1 mjesec: 586.3565549428745 m3
+Potrosnja u zadnjih godinu: 584.4697301561454

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Display Readings</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Readings</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Client ID</th>
+            <th>Client Name</th>
+            <th>Smart Device ID</th>
+            <th>Smart Device Name</th>
+            <th>Reading Value</th>
+            <th>Reading Month</th>
+            <th>Reading Year</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="reading : ${readings}">
+            <td th:text="${reading.smartDevice.client.id}"></td>
+            <td th:text="${reading.smartDevice.client.name}"></td>
+            <td th:text="${reading.smartDevice.id}"></td>
+            <td th:text="${reading.smartDevice.deviceName}"></td>
+            <td th:text="${reading.readingValue}"></td>
+            <td th:text="${reading.readingMonth}"></td>
+            <td th:text="${reading.readingYear}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled' : ''">
+                <a class="page-link" th:href="@{/display-readings(page=0)}">First</a>
+            </li>
+            <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled' : ''">
+                <a class="page-link" th:href="@{/display-readings(page=${currentPage - 1})}">Previous</a>
+            </li>
+            <li th:each="pageNumber : ${#numbers.sequence(0, totalPages-1)}" class="page-item" th:classappend="${currentPage == pageNumber} ? 'active' : ''">
+                <a class="page-link" th:href="@{/display-readings(page=${pageNumber})}" th:text="${pageNumber + 1}"></a>
+            </li>
+            <li class="page-item" th:classappend="${currentPage == totalPages-1} ? 'disabled' : ''">
+                <a class="page-link" th:href="@{/display-readings(page=${currentPage + 1})}">Next</a>
+            </li>
+            <li class="page-item" th:classappend="${currentPage == totalPages-1} ? 'disabled' : ''">
+                <a class="page-link" th:href="@{/display-readings(page=${totalPages - 1})}">Last</a>
+            </li>
+        </ul>
+    </nav>
+    <a href="/enter-reading" class="btn btn-primary">Return to Enter Reading</a>
+</div>
+</body>
+</html>
